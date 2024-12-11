@@ -1,4 +1,4 @@
-# How to Predict Recipe Popularity on Food.com
+# How to Predict Recipe Ratings on Food.com
 
 By: Feiwei Peng and Ashley Chu
 
@@ -96,10 +96,14 @@ The observed difference in the mean minutes between recipes with missing and non
 
 ## Hypothesis Testing
 
-• Null hypothesis: Recipes posted in different years have the same amounts of calories.
-• Alternative hypothesis: Recipes posted in different years have different amounts of calories.
+- Null hypothesis: Recipes posted in 2008 and 2018 have the same distributions of calories across recipes.
+- Alternative hypothesis: Recipes posted in 2008 and 2018 do not have the same distributions of calories across recipes.
+- For our test statistic, we used the K-S statistic because we wanted to see if these two years had different distributions.
+- Since the p-value is very small (2.026287255508594e-05), far below p = 0.05, we can see from this hypothesis test that the caloric distributions from 2008 and 2018 seem to be very different.
 
+As you can see from the visualization below, our observed K-S statistic is far below the expected statistics we would get if the distributions of calories for the two years were the same. Furthermore, since the p-value is much smaller than our threshold of 0.05, we believe the distributions of calories from 2008 and 2018 to be different.
 
+![hypothesis](hypothesis.png)
 
 ## Framing a Prediction Problem
 
@@ -107,9 +111,7 @@ Our prediction problem is trying to predict a recipe's average rating based on t
 
 ## Baseline Model
 
-Describe your model and state the features in your model, including how many are quantitative, ordinal, and nominal, and how you performed any necessary encodings. Report the performance of your model and whether or not you believe your current model is “good” and why.
-
-For our baseline model, we fit a linear regression model to the data, using the number of calories and number of steps (two quantitative attributes) to predict how a recipe would be rated. We extracted the data from the nutrition list and step list and aggregated the number of steps to get these attributes. Our model had a MSE of 0.24771574237250418, and we don't believe our current model is very good because it mainly relies on an intercept placed near where all the recipe ratings are clustered (in the high 4.5-4.9 star range). Perhaps the data is skewed, but we think we could still make a better model that could make more accurate predictions.
+For our baseline model, we used a pipeline to fit a linear regression model to the data, using the number of calories and number of steps (two quantitative attributes) to predict how a recipe would be rated. We extracted the data from the nutrition list and step list and aggregated the number of steps to get these attributes. Our model had a MSE of 0.24771574237250418, and we don't believe our current model is very good because it mainly relies on an intercept placed near where all the recipe ratings are clustered (in the high 4.5-4.9 star range). Perhaps the data is skewed, but we think we could still make a better model that could make more accurate predictions.
 
 ## Final Model
 
